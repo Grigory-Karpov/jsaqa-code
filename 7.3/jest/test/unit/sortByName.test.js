@@ -14,8 +14,6 @@ describe("Books names test suit", () => {
       "Гарри Поттер",
     ]);
   });
-
-  // ЭТОТ ТЕСТ ПОКРОЕТ 9-Ю СТРОКУ (return 0)
   it("Should return the same order if names are the same", () => {
     expect(
       sorting.sortByName([
