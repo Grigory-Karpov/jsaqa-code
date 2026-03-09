@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "cucumber": "cucumber-js"
+ "scripts": {
+    "test:jest": "jest",
+    "test:cucumber": "cucumber-js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^27.3.1",
+    "@cucumber/cucumber": "^12.7.0",
+    "chai": "^4.5.0",
+    "cucumber": "^7.0.0-rc.0",
+    "jest": "^27.5.1",
     "jest-puppeteer": "^6.0.0",
-    "puppeteer": "^13.3.2",
-    "chai": "^4.3.4",
-    "cucumber": "^7.0.0-rc.0"
+    "puppeteer": "^13.7.0"
   }
 }

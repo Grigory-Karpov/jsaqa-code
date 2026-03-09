@@ -12,17 +12,7 @@ module.exports = {
       await page.waitForSelector(selector);
       return await page.$eval(selector, (link) => link.textContent);
     } catch (error) {
-      throw new Error(`Text is not available for selector: ${selector}`);
-    }
-  },
-  putText: async function (page, selector, text) {
-    try {
-      const inputField = await page.$(selector);
-      await inputField.focus();
-      await inputField.type(text);
-      await page.keyboard.press("Enter");
-    } catch (error) {
-      throw new Error(`Not possible to type text for selector: ${selector}`);
+      throw new Error(`Not possible to get text from selector: ${selector}`);
     }
   },
 };
