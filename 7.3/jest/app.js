@@ -1,14 +1,13 @@
-function sortByName(inputArray) {
-  inputArray.sort(function (a, b) {
-    var nameA = a.toLowerCase(),
-      nameB = b.toLowerCase();
-    if (nameA < nameB)
-      //сортируем названия по возрастанию
-      return -1;
-    if (nameA > nameB) return 1;
-    return 0; // нет сортировки
-  });
-  return inputArray;
-}
+const { sortByName } = require('./app');
 
-exports.sortByName = sortByName;
+test('должен сортировать массив по алфавиту', () => {
+  const input = ['иван', 'мария', 'алексей'];
+  const expected = ['алексей', 'иван', 'мария'];
+  expect(sortByName(input)).toEqual(expected);
+});
+
+test('должен возвращать 0, если имена одинаковые', () => {
+   const input = ['иван', 'Иван']; 
+  const expected = ['иван', 'Иван'];
+  expect(sortByName(input)).toEqual(expected);
+});
