@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:edge": "cypress run --browser edge",
+    "test:parallel:browsers": "npm-run-all --parallel test:chrome test:edge",
+    "test:folder1": "cypress run --spec 'cypress/e2e/folder1/**/*'",
+    "test:folder2": "cypress run --spec 'cypress/e2e/folder2/**/*'",
+    "test:parallel:folders": "npm-run-all --parallel test:folder1 test:folder2"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cypress": "^9.0.0"
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

@@ -1,0 +1,24 @@
+name: Cypress Parallel Tests
+
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers:[1, 2] # Запускаем 2 параллельных контейнера!
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: 7.7/cypress-ui
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
