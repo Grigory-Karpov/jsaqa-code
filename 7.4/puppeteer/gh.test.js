@@ -1,13 +1,16 @@
 let page;
 
+beforeEach(async () => {
+  page = await browser.newPage();
+});
+
+afterEach(() => {
+  page.close();
+});
+
 describe("Github team page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team", { timeout: 100000 });
-  });
-
-  afterEach(() => {
-    page.close();
   });
 
   test("The h1 header content'", async () => {
@@ -16,7 +19,7 @@ describe("Github team page tests", () => {
     await new Promise(resolve => setTimeout(resolve, 3000));
     const title2 = await page.title();
     expect(title2).toContain("GitHub");
-  }, 100000); 
+  }, 100000);
 
   test("The first link attribute", async () => {
     const actual = await page.$eval("a", (link) => link.getAttribute("href"));
@@ -25,24 +28,13 @@ describe("Github team page tests", () => {
 
   test("The page contains Sign in button", async () => {
     const btnSelector = ".btn-large-mktg.btn-mktg";
-    await page.waitForSelector(btnSelector, {
-      visible: true,
-      timeout: 100000
-    });
+    await page.waitForSelector(btnSelector, { visible: true, timeout: 100000 });
     const actual = await page.$eval(btnSelector, (link) => link.textContent);
     expect(actual).toContain("Get started with Team");
   }, 100000);
 });
 
 describe("Github other pages tests", () => {
-  beforeEach(async () => {
-    page = await browser.newPage();
-  });
-
-  afterEach(() => {
-    page.close();
-  });
-
   test("Check GitHub Enterprise page title", async () => {
     await page.goto("https://github.com/enterprise", { timeout: 100000 });
     const title = await page.title();
